@@ -1,0 +1,6 @@
+.animate__faster {
+  --animate-duration: 200ms;
+}
+.invalid-feedback {
+  display: block;
+}

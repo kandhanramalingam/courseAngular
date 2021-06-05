@@ -59,6 +59,11 @@ $main-menu-width-lg: 110px;
 $main-menu-width-md: 100px;
 $main-menu-width-xs: 90px;
 
+$search-width: 300px;
+$search-width-lg: 230px;
+$search-width-md: 230px;
+$search-width-xs: 230px;
+
 $sub-menu-width: 230px;
 $sub-menu-width-lg: 230px;
 $sub-menu-width-md: 230px;
@@ -1870,7 +1875,7 @@ a.btn-secondary:not([href]):not([tabindex]) {
 
   .search {
     position: relative;
-    width: $sub-menu-width;
+    width: $search-width;
     border-radius: 20px;
     background: $background-color;
 
@@ -1903,7 +1908,7 @@ a.btn-secondary:not([href]):not([tabindex]) {
     }
 
     @include respond-below(md) {
-      width: $sub-menu-width/2;
+      width: $search-width-md;
 
       input {
         width: 85%;
@@ -1914,7 +1919,7 @@ a.btn-secondary:not([href]):not([tabindex]) {
       width: 30px;
       height: 30px;
       background: initial;
-      margin-left: 0.6rem;
+      margin-left: 1px;
       color: lighten($primary-color, 30%);
 
       input {
@@ -1939,7 +1944,7 @@ a.btn-secondary:not([href]):not([tabindex]) {
         left: 0;
         top: 0;
         height: $navbar-height-xs;
-        margin-left: 15px;
+        margin-left: 1px;
 
         input {
           display: block;
@@ -3434,11 +3439,11 @@ body.default-transition main {
     line-height: 1rem;
     }
   }
-  
+
     .fc-toolbar.fc-header-toolbar .fc-prev-button {
       margin-right: 0;
     }
-  
+
     .fc-toolbar.fc-header-toolbar .fc-next-button {
       margin-right: 5px;
     }
@@ -7759,7 +7764,7 @@ app-profile-who-to-follow app-user-follow:last-of-type > div {
     border-radius: $border-radius;
   }
 
-  
+
 
   .input-group-append .btn + .btn,
   .input-group-append .btn + .input-group-text,

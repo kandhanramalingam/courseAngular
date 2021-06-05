@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable({ providedIn: 'root' })
 
 export class Colors {
-  public static getColors() {
+  public static getColors(): any {
     const rootStyle = getComputedStyle(document.body);
     return {
       themeColor1: rootStyle.getPropertyValue('--theme-color-1').trim(),

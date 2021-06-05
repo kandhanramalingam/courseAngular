@@ -17,39 +17,41 @@ export class AuthGuard implements CanActivate, CanActivateChild {
   ): Promise<boolean> {
     const currentUser = await this.authService.getUser();
 
-    if (currentUser) {
-      if (route.data && route.data.roles) {
-        if (route.data.roles.includes(currentUser.role)) {
-          return true;
-        } else {
-          this.router.navigate(['/unauthorized']);
-          return false;
-        }
-      } else {
-        return true;
-      }
-    } else {
-      this.router.navigate(['/user/login']);
-      return false;
-    }
+    // if (currentUser) {
+    //   if (route.data && route.data.roles) {
+    //     if (route.data.roles.includes(currentUser.role)) {
+    //       return true;
+    //     } else {
+    //       this.router.navigate(['/unauthorized']);
+    //       return false;
+    //     }
+    //   } else {
+    //     return true;
+    //   }
+    // } else {
+    //   this.router.navigate(['/user/login']);
+    //   return false;
+    // }
+    return true;
   }
   async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
     const currentUser = await this.authService.getUser();
 
-    if (currentUser) {
-      if (route.data && route.data.roles) {
-        if (route.data.roles.includes(currentUser.role)) {
-          return true;
-        } else {
-          this.router.navigate(['/unauthorized']);
-          return false;
-        }
-      } else {
-        return true;
-      }
-    } else {
-      this.router.navigate(['/user/login']);
-      return false;
-    }
+    // if (currentUser) {
+    //   if (route.data && route.data.roles) {
+    //     if (route.data.roles.includes(currentUser.role)) {
+    //       return true;
+    //     } else {
+    //       this.router.navigate(['/unauthorized']);
+    //       return false;
+    //     }
+    //   } else {
+    //     return true;
+    //   }
+    // } else {
+    //   this.router.navigate(['/user/login']);
+    //   return false;
+    // }
+    return true;
   }
 }

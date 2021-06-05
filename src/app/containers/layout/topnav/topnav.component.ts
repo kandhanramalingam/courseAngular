@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
+import {Component, OnInit, OnDestroy, HostListener, Input} from '@angular/core';
 import { Subscription } from 'rxjs';
 import { SidebarService, ISidebar } from '../sidebar/sidebar.service';
 import { Router } from '@angular/router';
@@ -6,13 +6,13 @@ import { LangService, Language } from 'src/app/shared/lang.service';
 import { AuthService } from 'src/app/shared/auth.service';
 import { environment } from 'src/environments/environment';
 import { getThemeColor, setThemeColor } from 'src/app/utils/util';
+import {FormBuilder} from '@angular/forms';
 
 @Component({
   selector: 'app-topnav',
   templateUrl: './topnav.component.html',
 })
 export class TopnavComponent implements OnInit, OnDestroy {
-  buyUrl = environment.buyUrl;
   adminRoot = environment.adminRoot;
   sidebar: ISidebar;
   subscription: Subscription;
@@ -23,7 +23,7 @@ export class TopnavComponent implements OnInit, OnDestroy {
   isFullScreen = false;
   isDarkModeActive = false;
   searchKey = '';
-
+  currentUser: any;
   constructor(
     private sidebarService: SidebarService,
     private authService: AuthService,
@@ -71,12 +71,10 @@ export class TopnavComponent implements OnInit, OnDestroy {
     this.currentLanguage = this.langService.languageShorthand;
   }
 
-  async ngOnInit(): Promise<void> {
-    if (await this.authService.getUser()) {
-      this.displayName = await this.authService.getUser().then((user) => {
-        return user.displayName;
-      });
-    }
+  ngOnInit(): void {
+    this.authService.getUser().then((user) => {
+      this.currentUser = user;
+    });
     this.subscription = this.sidebarService.getSidebar().subscribe(
       (res) => {
         this.sidebar = res;
@@ -89,6 +87,10 @@ export class TopnavComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
+  }
+
+  showAuthPupup(): void {
+
   }
 
   menuButtonClick = (
@@ -124,9 +126,9 @@ export class TopnavComponent implements OnInit, OnDestroy {
   }
 
   onSignOut(): void {
-    this.authService.signOut().subscribe(() => {
-      this.router.navigate([this.adminRoot]);
-    });
+    // this.authService.signOut().subscribe(() => {
+    //   this.router.navigate([this.adminRoot]);
+    // });
   }
 
   searchKeyUp(event: KeyboardEvent): void {

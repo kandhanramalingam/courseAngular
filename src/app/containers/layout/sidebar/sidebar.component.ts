@@ -16,11 +16,9 @@ export class SidebarComponent implements OnInit, OnDestroy {
   selectedParentMenu = '';
   viewingParentMenu = '';
   currentUrl: string;
-
   sidebar: ISidebar;
   subscription: Subscription;
   closedCollapseList = [];
-
   currentUser = null;
 
   constructor(
@@ -100,6 +98,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   }
 
   findParentInPath(path): any {
+    if (!path){ return; }
     const foundedMenuItem = this.menuItems.find((x) => x.to === path);
     if (!foundedMenuItem) {
       if (path.split('/').length > 1) {

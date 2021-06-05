@@ -1,0 +1,62 @@
+<button type="button" class="btn btn-primary" [ngClass]="styleClass" (click)="openModal(template)">{{'forms.signin' | translate}}</button>
+<ng-template #template>
+  <div class="modal-body overflow-hidden">
+    <form (submit)="onLoginFormSubmit()" [formGroup]="form" #f="ngForm" novalidate class="animate__animated animate__fadeInRight animate__faster" *ngIf="isLoginForm">
+      <h1 class="font-weight-bold">{{'user.login-title' | translate | uppercase}}</h1>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <label class="form-group has-top-label">
+        <input class="form-control" required formControlName="email"/>
+        <span>{{ 'forms.email' | translate }}</span>
+        <div *ngIf="form.get('email').errors?.required && f.submitted" class="invalid-feedback">Email is required!</div>
+        <div *ngIf="form.get('email').errors?.email && f.submitted" class="invalid-feedback">Email must be a valid address</div>
+      </label>
+      <label class="form-group has-top-label">
+        <input class="form-control" required type="password" formControlName="password"/>
+        <span>{{ 'forms.password' | translate }}</span>
+        <div *ngIf="form.get('password').errors?.required && f.submitted" class="invalid-feedback">Password is required!</div>
+        <div *ngIf="form.get('password').errors?.minlength && f.submitted" class="invalid-feedback">Password must be contain atleat 4 characters.</div>
+      </label>
+      <button type="submit" class="btn btn-primary default btn-xl btn-block">{{'login' | translate}}</button>
+      <p class="text-center mt-3 mb-2"><span class="btn-empty  cursor-pointer font-weight-bold text-primary btn-light" (click)="showForgotPassword()">Forgot password?</span></p>
+      <p class="text-center mb-0">Dont&apos;t have an account yet? <span class="btn-empty cursor-pointer font-weight-bold text-primary btn-light" (click)="showRegisterForm()">Register</span></p>
+    </form>
+    <form (submit)="onRegisterFormSubmit()" [formGroup]="form" #f="ngForm" novalidate class="animate__animated animate__fadeInRight animate__faster" *ngIf="isRegisterForm">
+      <h1 class="font-weight-bold">{{'user.register' | translate | uppercase}}</h1>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <label class="form-group has-top-label">
+        <input class="form-control" required formControlName="email"/>
+        <span>{{ 'forms.email' | translate }}</span>
+        <div *ngIf="form.get('email').errors?.required && f.submitted" class="invalid-feedback">Email is required!</div>
+        <div *ngIf="form.get('email').errors?.email && f.submitted" class="invalid-feedback">Email must be a valid address</div>
+      </label>
+      <label class="form-group has-top-label">
+        <input class="form-control" required type="password" formControlName="password"/>
+        <span>{{ 'forms.password' | translate }}</span>
+        <div *ngIf="form.get('password').errors?.required && f.submitted" class="invalid-feedback">Password is required!</div>
+        <div *ngIf="form.get('password').errors?.minlength && f.submitted" class="invalid-feedback">Password must be contain atleat 4 characters.</div>
+      </label>
+      <div class="custom-control custom-checkbox mb-3"><input type="checkbox" id="customCheck1" class="custom-control-input"><label for="customCheck1" class="custom-control-label">Check this custom checkbox</label></div>
+      <button type="submit" class="btn btn-primary default btn-xl btn-block">{{'login' | translate}}</button>
+      <p class="text-center mt-3 mb-0">Already have an account? <span class="btn-empty cursor-pointer font-weight-bold text-primary btn-light" (click)="showLoginForm()">Login</span></p>
+    </form>
+    <form (submit)="onForgotFormSubmit()" [formGroup]="form" #f="ngForm" novalidate class="animate__animated animate__fadeInRight animate__faster" *ngIf="isForgotForm">
+      <h1 class="font-weight-bold">{{'user.forgot-password' | translate | uppercase}}</h1>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <label class="form-group has-top-label">
+        <input class="form-control" required formControlName="email"/>
+        <span>{{ 'forms.email' | translate }}</span>
+        <div *ngIf="form.get('email').errors?.required && f.submitted" class="invalid-feedback">Email is required!</div>
+        <div *ngIf="form.get('email').errors?.email && f.submitted" class="invalid-feedback">Email must be a valid address</div>
+      </label>
+      <button type="submit" class="btn btn-primary default btn-xl btn-block">{{'user.reset-password-button' | translate}}</button>
+      <p class="text-center mt-3">Already have an account? <span class="btn-empty cursor-pointer font-weight-bold text-primary btn-light" (click)="showLoginForm()">Login</span></p>
+      <p class="text-center mb-0">Dont&apos;t have an account yet? <span class="btn-empty cursor-pointer font-weight-bold text-primary btn-light" (click)="showRegisterForm()">Register</span></p>
+    </form>
+  </div>
+</ng-template>
